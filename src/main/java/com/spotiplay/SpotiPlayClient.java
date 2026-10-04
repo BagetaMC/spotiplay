@@ -5,7 +5,9 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
@@ -17,7 +19,7 @@ public class SpotiPlayClient implements ClientModInitializer {
 
     private static KeyBinding playKey;
     private static KeyBinding stopKey;
-    private static String currentTrackName = "Zadne";
+    private static String currentTrackName = "Zadna";
 
     @Override
     public void onInitializeClient() {
@@ -67,7 +69,7 @@ public class SpotiPlayClient implements ClientModInitializer {
         });
 
         HudRenderCallback.EVENT.register((drawContext, tickCounter) -> {
-            net.minecraft.client.MinecraftClient client = net.minecraft.client.MinecraftClient.getInstance();
+            MinecraftClient client = MinecraftClient.getInstance();
 
             if (client.player != null && !client.options.debugEnabled) {
                 TextRenderer renderer = client.textRenderer;
